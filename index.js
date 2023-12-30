@@ -29,6 +29,7 @@ function senddata(req, res){
     // else{
     //     res.send("KrishnaCodedThis")
     // }
+    console.log(msgs)
     res.send(msgs)
 }
 
