@@ -14,7 +14,12 @@ var msgs = ""
 function home(req, res){
     msgs = ""
     console.log("Request Recieved \n"+"msg => "+req.query.nme+":"+req.query.msg)
+    if(req.query.nme == 'undefined'){
+        res.send("Service by Krishna")
+        return
+    }
     msgs+=(req.query.nme+":"+req.query.msg+"<br>")
+    res.send("Service by Krishna")
 }
 
 function senddata(req, res){
