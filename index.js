@@ -12,14 +12,18 @@ var msgs = ""
 // app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(express.json());
 function home(req, res){
+    msgs = ""
     console.log("Request Recieved \n"+"msg => "+req.query.nme+":"+req.query.msg)
     msgs+=(req.query.nme+":"+req.query.msg+"<br>")
-    console.log(msgs)
-    res.send(msgs)
 }
 
 function senddata(req, res){
-    res.send(msgs)
+    if(msgs != req.query.msg){
+        res.send(msgs)
+    }
+    else{
+        res.send("KrishnaCodedThis")
+    }
 }
 
 app.post('/', senddata)
