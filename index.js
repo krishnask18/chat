@@ -23,7 +23,7 @@ function home(req, res){
 }
 
 function senddata(req, res){
-    if(msgs != req.query.msg){
+    if(msgs != req.query.msg && req.query.msg != ""){
         res.send(msgs)
     }
     else{
