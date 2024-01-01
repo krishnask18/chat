@@ -9,6 +9,8 @@ function listener(){
 }
 app.use(cors())
 var msgs = ""
+
+var datamap = new Map();
 // app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(express.json());
 function home(req, res){
