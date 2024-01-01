@@ -14,25 +14,27 @@ var msgs = ""
 function home(req, res){
     msgs = ""
     console.log("Request Recieved \n"+"msg => "+req.query.nme+":"+req.query.msg)
-    if(req.query.nme == 'undefined'){
-        res.send("Service by Krishna")
-        return
-    }
-    msgs+=(req.query.nme+":"+req.query.msg+"<br>")
-    res.send("Service by Krishna")
+    msgs+=(req.query.nme+":"+req.query.msg+"<br>");
+    [...datamap.keys()].forEach((key) => {
+    datamap.set(key, datamap.get(key)+msgs);
+    });
+    console.log(datamap)
+    res.send("Krishna")
 }
 
 function senddata(req, res){
-    // if(msgs != req.query.msg && req.query.msg != ""){
-    //     res.send(msgs)
-    // }
-    // else{
-    //     res.send("KrishnaCodedThis")
-    // }
-    console.log(msgs)
-    res.send(msgs)
+    res.send(datamap.get(req.query.nme))
+    datamap.set(req.query.nme, "")
 }
 
+function delName(req, res){
+    try{
+        datamap.delete(req.query.nme);
+    }
+    catch(e){}
+    console.log(datamap)
+}
+app.delete('/', delName)
 app.post('/', senddata)
 app.get('/', home)
 app.listen(port, listener)
